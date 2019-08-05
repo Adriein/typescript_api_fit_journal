@@ -1,30 +1,35 @@
 import express from 'express';
 
+//Routes
+import autenthicationRoutes from './routes/autenthication.routes'
 
-class Server {
+
+export class Server {
 
     public app: express.Application;
 
     constructor() {
         this.app = express();
-        this.config();
+        this.settings();
+        this.middlewares();
+        this.routes();
     }
 
-    config() {
+    private settings() {
         this.app.set('port', process.env.PORT || 3000);
 
     }
 
-    routes() {
+    private middlewares() {
+        this.app.use(express.json());
+    }
 
+    private routes() {
+        this.app.use('/login', autenthicationRoutes);
     }
 
     start() {
-        this.app.listen(this.app.get('port'), () => console.log(`server on port ${this.app.get('port')}`));
+        this.app.listen(this.app.get('port'), () => console.log(`Server on port ${this.app.get('port')}`));
 
     }
 }
-
-const server = new Server();
-
-server.start();
