@@ -1,7 +1,8 @@
 import express from 'express';
 
 //Routes
-import autenthicationRoutes from './routes/autenthication.routes'
+import autenthicationRoutes from './routes/autenthication.routes';
+import recordRoutes from './routes/records.routes';
 
 
 export class Server {
@@ -26,6 +27,7 @@ export class Server {
 
     private routes() {
         this.app.use('/login', autenthicationRoutes);
+        this.app.use('/createRecord', recordRoutes);
     }
 
     start() {

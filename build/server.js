@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 //Routes
 const autenthication_routes_1 = __importDefault(require("./routes/autenthication.routes"));
+const records_routes_1 = __importDefault(require("./routes/records.routes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -21,6 +22,7 @@ class Server {
     }
     routes() {
         this.app.use('/login', autenthication_routes_1.default);
+        this.app.use('/createRecord', records_routes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => console.log(`Server on port ${this.app.get('port')}`));
